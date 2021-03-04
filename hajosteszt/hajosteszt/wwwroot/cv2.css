@@ -1,0 +1,51 @@
+﻿
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-weight: bold;
+    text-align: center;
+}
+
+#footer {
+    padding: 30px;
+    background: red;
+}
+
+
+#article {
+    text-align: left;
+    background: purple;
+}
+
+#aside {
+    background-color: mediumpurple;
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    #main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #nav,
+    #header {
+        order: -1;
+    }
+
+    #article {
+        flex: 1 1 75%;
+    }
+
+    #aside {
+        flex: 1 1 25%;
+    }
+}
