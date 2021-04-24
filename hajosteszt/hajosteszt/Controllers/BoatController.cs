@@ -13,13 +13,20 @@ namespace hajosteszt.Controllers
     public class BoatController : ControllerBase
     {
         [HttpGet]
-        [Route("questions/all")]
-        public ActionResult M1()
+        [Route("questions/{sorszám}")]
+        public ActionResult M2(int sorszám)
         {
-            Models.HajostesztContext context = new HajostesztContext();
-            var kérdések = from x in context.Questions select x.QuestionText;
+            HajostesztContext context = new HajostesztContext();
+            var kérdés = (from x in context.Questions
+                          where x.QuestionId == sorszám
+                          select x).FirstOrDefault();
 
-            return new JsonResult(kérdések);
+            if (kérdés == null) return BadRequest("Nincs ilyen sorszámú kérdés");
+
+            return new JsonResult(kérdés);
+
+
+
         }
     }
 }
